@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Angular Components</h1>
+  <app-post-form (onAdd)="updatePost($event)"></app-post-form>
+  <hr/>
+  <input type="text" [(ngModel)]="search" placeholder="Search...">
+  <app-post *ngFor="let p of posts | filter:search; trackBy: trackByFn" [toPost]="p" (onRemove)="deletePost($event)">
+    <small *ngIf="p.text.length > 20; else short">Post is long</small>
+    <ng-template #short>
+      <small>Post is short</small>
+    </ng-template>
+  </app-post>
+</div>
